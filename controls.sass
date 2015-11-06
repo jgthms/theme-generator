@@ -1,0 +1,43 @@
+@function closest-two($number)
+  @if ($number % 2 == 0)
+    @return $number
+  @else
+    @return ($number + 1)
+
+$control-size: 12px
+$control-line-height: closest-two(round($control-size * 1.4))
+$control-padding: $control-size / 2
+$control-height: 2px + ($control-padding * 2) + $control-line-height
+
+=control($control-background: white, $control-border: $color-border, $control-color: $color-text-body)
+  -moz-appearance: none
+  -webkit-appearance: none
+  background: $control-background
+  border: 1px solid $control-border
+  border-radius: 3px
+  color: $control-color
+  display: inline-block
+  font-size: $control-size
+  height: $control-height
+  line-height: $control-line-height
+  padding: $control-padding closest-two($control-padding * 1.2)
+  position: relative
+  vertical-align: top
+  &:active,
+  &:focus
+    outline: none
+
+// =control--small
+//   font-size: 12px
+//   height: 32px
+//   padding: 4px 8px 6px
+
+// =control--medium
+//   font-size: 16px
+//   height: 40px
+//   padding: 8px 10px 10px
+
+// =control--large
+//   font-size: 20px
+//   height: 60px
+//   padding: 18px 30px 20px
