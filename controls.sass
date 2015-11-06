@@ -4,28 +4,50 @@
   @else
     @return ($number + 1)
 
-$control-size: 12px
+$control-size: 14px
 $control-line-height: closest-two(round($control-size * 1.4))
-$control-padding: $control-size / 2
-$control-height: 2px + ($control-padding * 2) + $control-line-height
+$control-padding: ($control-size / 2) + 1px
+@if ($has-border)
+  $control-padding: $control-size / 2
+$control-height: ($control-padding * 2) + $control-line-height
+@if ($has-border)
+  $control-height: 2px + ($control-padding * 2) + $control-line-height
 
-=control($control-background: white, $control-border: $color-border, $control-color: $color-text-body)
+$control-background: white
+$control-border: $color-border
+$control-color: $color-text-body
+
+=control
   -moz-appearance: none
   -webkit-appearance: none
   background: $control-background
-  border: 1px solid $control-border
+  @if ($has-border)
+    border: 1px solid $control-border
+  @else
+    border: 0
   border-radius: 3px
   color: $control-color
   display: inline-block
   font-size: $control-size
   height: $control-height
   line-height: $control-line-height
-  padding: $control-padding closest-two($control-padding * 1.2)
+  padding: $control-padding closest-two(ceil($control-padding * 1.2))
   position: relative
   vertical-align: top
   &:active,
   &:focus
     outline: none
+
+=input($input-background, $input-border)
+  +control
+  background-color: $input-background
+  border-color: $input-border
+  box-shadow: inset 0 1px 2px rgba(black, .1)
+  &:hover
+    border-color: darken($input-border, 10%)
+  &:active,
+  &:focus
+    border-color: darken($input-border, 30%)
 
 // =control--small
 //   font-size: 12px
