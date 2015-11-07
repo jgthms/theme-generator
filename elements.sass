@@ -1,24 +1,101 @@
-$input-background: lighten($color-background, 20%)
-$input-border: darken($input-background, 20%)
-
 =input
   +control
-  background-color: $input-background
-  border-color: $input-border
+  min-width: 240px
   @if not $is-flat
-    box-shadow: inset 0 1px 2px rgba(black, .1)
-  color: $color-text-body
+    box-shadow: $control-shadow-inset
   &:hover
-    border-color: darken($input-border, 10%)
+    border-color: darken($control-border, 10%)
   &:active,
   &:focus
-    border-color: darken($input-border, 30%)
+    border-color: $color-link
 
-$title-color: $color-text-title
-$title-size: closestEvenNumber($size-text-body * 1.5)
+$select-arrow-color: findInvertColor($control-background)
+
+=select
+  display: inline-block
+  height: $control-height
+  position: relative
+  vertical-align: top
+  select
+    +control
+    @if not $is-flat
+      background-image: linear-gradient(lighten($control-background, 10%), $control-background)
+      box-shadow: $control-shadow
+    cursor: pointer
+    min-width: 240px
+    padding-right: 36px
+    &:hover
+      border-color: darken($control-border, 10%)
+    &:active,
+    &:focus
+      border-color: darken($control-border, 30%)
+    &:hover
+      border-color: darken($control-border, 10%)
+      color: $control-color-hover
+  &:after
+    +arrow($select-arrow-color)
+    right: 16px
+    top: 13px
+  &:hover
+    &:after
+      border-color: $control-color-hover
+
+$checkbox-arrow-color: findInvertColor($color-link)
+
+=checkbox
+  cursor: pointer
+  display: inline-block
+  line-height: 16px
+  padding-left: 18px
+  position: relative
+  vertical-align: top
+  input
+    +control
+    border-radius: 1px
+    cursor: pointer
+    float: left
+    height: 14px
+    left: 0
+    padding: 0
+    position: absolute
+    top: 1px
+    width: 14px
+    @if not $is-flat
+      box-shadow: $control-shadow-inset
+    &:after
+      +arrow($checkbox-arrow-color)
+      height: 4px
+      left: 4px
+      opacity: 0
+      position: absolute
+      top: 4px
+      transform: rotate(-45deg) scale(1)
+    &:checked
+      background: $color-link
+      border: 0
+      @if not $is-flat
+        box-shadow: $control-shadow, $control-shadow-inset
+      &:after
+        opacity: 1
+  &:hover
+    input
+      border-color: $color-link
+      &:checked
+        border-color: $color-link
+
+$title-color: $color-title
+$title-size: closestEvenNumber($size-text * 1.5)
 
 =title
   color: $title-color
   font-size: $title-size
+  font-weight: bold
+  line-height: 1.2
+
+$subtitle-size: closestEvenNumber($size-text * 1.2)
+
+=subtitle
+  color: $title-color
+  font-size: $subtitle-size
   font-weight: bold
   line-height: 1.2

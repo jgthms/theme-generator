@@ -8,7 +8,7 @@
     color: desaturate(darken($color, 50%), 10%)
     @if not $is-flat
       background-image: linear-gradient(lighten($color, 2%), darken($color, 3%))
-      box-shadow: 0 1px 2px rgba(black, .1)
+      box-shadow: $control-shadow
       text-shadow: 0 1px 1px white
     &:hover
       @if $has-border
@@ -27,7 +27,7 @@
     color: desaturate(darken($color, 30%), 10%)
     @if not $is-flat
       background-image: linear-gradient(lighten($color, 15%), darken($color, 5%))
-      box-shadow: 0 1px 2px rgba(black, .1)
+      box-shadow: $control-shadow
       text-shadow: 0 1px 1px rgba(white, .5)
     &:hover
       @if $has-border

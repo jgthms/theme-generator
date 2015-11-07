@@ -3,6 +3,7 @@
 @import "reset"
 @import "variables"
 @import "functions"
+@import "mixins"
 @import "colors"
 
 // Definitions
@@ -11,6 +12,9 @@
 @import "controls"
 @import "buttons"
 @import "elements"
+
+p + p
+  margin-top: 10px
 
 .button-primary
   +button($color-link)
@@ -36,5 +40,16 @@
 .input
   +input
 
+.select
+  +select
+
+.checkbox
+  +checkbox
+
 .title
   +title
+  margin-bottom: 20px
+
+.subtitle
+  +subtitle
+  margin: 20px 0 10px

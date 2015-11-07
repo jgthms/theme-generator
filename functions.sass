@@ -26,3 +26,11 @@
     @return $number
   @else
     @return ($number + 1px)
+
+@function findInvertColor($color)
+  @if (colorLuminance($color) > 0.8)
+    @return desaturate(darken($color, 50%), 10%)
+  @else if (colorLuminance($color) > 0.5)
+    @return desaturate(darken($color, 30%), 10%)
+  @else
+    @return white
