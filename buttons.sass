@@ -1,60 +1,62 @@
-@function pow($number, $exp)
-  $value: 1
-  @if $exp > 0
-    @for $i from 1 through $exp
-      $value: $value * $number
-  @else if $exp < 0
-    @for $i from 1 through -$exp
-      $value: $value / $number
-  @return $value
-
-@function luminance($color)
-  $colors: ('red': red($color),'green': green($color),'blue': blue($color))
-  @each $name, $value in $colors
-    $adjusted: 0
-    $value: $value / 255
-    @if $value < 0.03928
-      $value: $value / 12.92
-    @else
-      $value: ($value + .055) / 1.055
-      $value: pow($value, 2)
-    $colors: map-merge($colors, ($name: $value))
-  @return (map-get($colors, 'red') * .2126) + (map-get($colors, 'green') * .7152) + (map-get($colors, 'blue') * .0722)
-
 =button($color)
   +control
   cursor: pointer
-  padding: ($control-padding - 1px) closest-two(ceil($control-padding * 1.5)) ($control-padding + 1px)
-  @if (luminance($color) > 0.8)
+  padding: ($control-padding - 1px) closestEvenNumber(ceil($control-padding * 1.6)) ($control-padding + 1px)
+  @if (colorLuminance($color) > 0.8)
     background-color: $color
-    background-image: linear-gradient(lighten($color, 2%), darken($color, 3%))
     border-color: darken($color, 20%)
-    box-shadow: 0 1px 2px rgba(black, .1)
     color: desaturate(darken($color, 50%), 10%)
-    text-shadow: 0 1px 1px white
+    @if not $is-flat
+      background-image: linear-gradient(lighten($color, 2%), darken($color, 3%))
+      box-shadow: 0 1px 2px rgba(black, .1)
+      text-shadow: 0 1px 1px white
     &:hover
-      border-color: darken($color, 30%)
+      @if $has-border
+        border-color: darken($color, 30%)
+      @else
+        background-color: darken($color, 5%)
       color: desaturate(darken($color, 70%), 10%)
-  @else if (luminance($color) > 0.5)
+    &:active
+      @if $has-border
+        background: $color
+      @else
+        background: darken($color, 10%)
+  @else if (colorLuminance($color) > 0.5)
     background-color: $color
-    background-image: linear-gradient(lighten($color, 15%), darken($color, 5%))
     border-color: darken($color, 15%)
-    box-shadow: 0 1px 2px rgba(black, .1)
     color: desaturate(darken($color, 30%), 10%)
-    text-shadow: 0 1px 1px rgba(white, .5)
+    @if not $is-flat
+      background-image: linear-gradient(lighten($color, 15%), darken($color, 5%))
+      box-shadow: 0 1px 2px rgba(black, .1)
+      text-shadow: 0 1px 1px rgba(white, .5)
     &:hover
-      border-color: darken($color, 25%)
+      @if $has-border
+        border-color: darken($color, 25%)
+      @else
+        background-color: darken($color, 5%)
       color: desaturate(darken($color, 40%), 10%)
+    &:active
+      @if $has-border
+        background: $color
+      @else
+        background: darken($color, 10%)
   @else
     background-color: $color
-    background-image: linear-gradient(adjust-hue(lighten($color, 5%), -5deg), $color)
+    @if not $is-flat
+      background-image: linear-gradient(adjust-hue(lighten($color, 5%), -5deg), $color)
+      box-shadow: 0 1px 2px rgba(black, .2)
+      text-shadow: 0 1px 1px rgba(black, .2)
     border-color: darken($color, 5%)
-    box-shadow: 0 1px 2px rgba(black, .2)
     color: white
-    text-shadow: 0 1px 1px rgba(black, .2)
     &:hover
-      border-color: darken($color, 20%)
+      @if $has-border
+        border-color: darken($color, 20%)
+      @else
+        background-color: darken($color, 5%)
+    &:active
+      @if $has-border
+        background: $color
+      @else
+        background: darken($color, 10%)
   &:active
-    background: $color
     box-shadow: inset 0 1px 2px rgba(black, .2)
-  text-transform: uppercase

@@ -1,8 +1,16 @@
+// Setup
+
 @import "reset"
 @import "variables"
+@import "functions"
+@import "colors"
+
+// Definitions
+
 @import "base"
 @import "controls"
 @import "buttons"
+@import "elements"
 
 .button-primary
   +button($color-link)
@@ -19,9 +27,6 @@
 .button-success
   +button($color-status-success)
 
-.button-info
-  +button($color-status-info)
-
 .button-warning
   +button($color-status-warning)
 
@@ -29,4 +34,7 @@
   +button($color-status-danger)
 
 .input
-  +input(white, #ddd)
+  +input
+
+.title
+  +title

@@ -1,0 +1,53 @@
+@function setTitleColor()
+  @return darken($color-text-body, 30%)
+
+$color-text-title: setTitleColor()
+
+$color-link-h: hue($color-link)
+$color-link-s: saturation($color-link)
+$color-link-l: lightness($color-link)
+
+@function setStatusGreenColor()
+  $green-s: $color-link-s
+  @if ($color-link-s > 70%)
+    $green-s: 70%
+  @else if ($color-link-s < 41%)
+    $green-s: 40%
+  @else if ($color-link-s < 61%)
+    $green-s: 60%
+  $green: hsl(120, $green-s, $color-link-l)
+  @return $green
+
+$color-status-success: setStatusGreenColor()
+
+@function setStatusYellowColor()
+  $yellow-s: 80%
+  $yellow-l: $color-link-l
+  @if ($color-link-s > 80%)
+    $yellow-l: $color-link-l + 15%
+  @else if ($color-link-s < 41%)
+    $yellow-s: 70%
+    $yellow-l: $color-link-l + 15%
+  @else if ($color-link-s < 71%)
+    $yellow-l: $color-link-l + 5%
+  $yellow: hsl(50, $yellow-s, $yellow-l)
+  @return $yellow
+
+$color-status-warning: setStatusYellowColor()
+
+@function setStatusRedColor()
+  $red-s: $color-link-s
+  $red-l: $color-link-l
+  @if ($color-link-s > 90%)
+    $red-s: 90%
+    $red-l: $color-link-l + 10%
+  @else if ($color-link-s < 41%)
+    $red-s: 50%
+    $red-l: $color-link-l + 5%
+  @else if ($color-link-s < 71%)
+    $red-s: 70%
+    $red-l: $color-link-l - 10%
+  $red: hsl(20, $red-s, $red-l)
+  @return $red
+
+$color-status-danger: setStatusRedColor()
