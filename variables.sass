@@ -3,22 +3,33 @@
 
 $color-link: #008cdd
 // $color-link: #0f0
-$color-link: #c69
+// $color-link: #c69
+// $color-link: #3b5998
+// $color-link: #9c3
 
 $color-text: #6f7c82
 // $color-link: #fce473
 
+// TYPEKIT
+$color-link: #9c3
+// $optional-color-background: #efebe3
+$color-text: #345
+
 // @debug saturation($color-link)
 // @debug lightness($color-link)
 
-$family-body: "DIN", "Source Sans Pro", "Open Sans"
+$family-body: "Source Sans Pro", "Open Sans", "Verdana", "Roboto", "DIN"
 
 $size-text: 14px
-$size-radius: 2px
+$size-radius: 0
 
-$has-border: true
+$has-border: false
 
-$is-flat: false
+$is-flat: true
+$is-rounded: false
+
+@if $is-rounded
+  $size-radius: 290486px
 
 // Colors
 // $color-border:         #ebeff5

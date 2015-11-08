@@ -15,23 +15,29 @@ $control-border: desaturate(darken($control-background, 20%), 10%)
 $control-shadow: 0 1px 2px rgba(black, .1)
 $control-shadow-inset: inset 0 1px 2px rgba(black, .1)
 
+$control-padding-horizontal: 1.2
+
+@if ($is-rounded)
+  $control-padding-horizontal: 1.6
+
 =control
   -moz-appearance: none
   -webkit-appearance: none
   background: $control-background
-  @if ($has-border)
-    border: 1px solid $control-border
-  @else
-    border: 0
   border-radius: $size-radius
   color: $control-color
   display: inline-block
   font-size: $control-size
   height: $control-height
   line-height: $control-line-height
-  padding: $control-padding closestEvenNumber(ceil($control-padding * 1.2))
+  padding: $control-padding closestEvenNumber(ceil($control-padding * $control-padding-horizontal))
   position: relative
   vertical-align: top
+  @if ($has-border)
+    border: 1px solid $control-border
+  @else
+    border: 0
+  @else
   &:active,
   &:focus
     outline: none

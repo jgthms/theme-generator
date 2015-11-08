@@ -1,4 +1,4 @@
-=input
+.input
   +control
   min-width: 240px
   @if not $is-flat
@@ -11,7 +11,7 @@
 
 $select-arrow-color: findInvertColor($control-background)
 
-=select
+.select
   display: inline-block
   height: $control-height
   position: relative
@@ -34,19 +34,20 @@ $select-arrow-color: findInvertColor($control-background)
       color: $control-color-hover
   &:after
     +arrow($select-arrow-color)
+    margin-top: -5px
     right: 16px
-    top: 13px
+    top: 50%
   &:hover
     &:after
       border-color: $control-color-hover
 
 $checkbox-arrow-color: findInvertColor($color-link)
 
-=checkbox
+.checkbox
   cursor: pointer
   display: inline-block
-  line-height: 16px
-  padding-left: 18px
+  line-height: $size-text
+  padding-left: $size-text + 4px
   position: relative
   vertical-align: top
   input
@@ -54,21 +55,22 @@ $checkbox-arrow-color: findInvertColor($color-link)
     border-radius: 1px
     cursor: pointer
     float: left
-    height: 14px
+    height: $size-text
     left: 0
     padding: 0
     position: absolute
-    top: 1px
-    width: 14px
+    top: 0
+    width: $size-text
     @if not $is-flat
       box-shadow: $control-shadow-inset
     &:after
       +arrow($checkbox-arrow-color)
       height: 4px
-      left: 4px
+      left: 50%
+      margin: -3px 0 0 -3px
       opacity: 0
       position: absolute
-      top: 4px
+      top: 50%
       transform: rotate(-45deg) scale(1)
     &:checked
       background: $color-link
@@ -83,18 +85,38 @@ $checkbox-arrow-color: findInvertColor($color-link)
       &:checked
         border-color: $color-link
 
-$title-color: $color-title
-$title-size: closestEvenNumber($size-text * 1.5)
+$radio-dot: closestEvenNumber($size-text / 2) - 4px
 
-=title
+.radio
+  @extend .checkbox
+  & + .radio
+    margin-left: 10px
+  input
+    border-radius: 290486px
+    &:after
+      background: $checkbox-arrow-color
+      border: 0
+      border-radius: 290486px
+      height: $radio-dot
+      left: 50%
+      margin-left: - ($radio-dot / 2)
+      margin-top: - ($radio-dot / 2)
+      top: 50%
+      transform: none
+      width: $radio-dot
+
+$title-color: $color-title
+$title-size: closestEvenNumber($size-text * 3)
+
+.title
   color: $title-color
   font-size: $title-size
-  font-weight: bold
+  font-weight: 300
   line-height: 1.2
 
 $subtitle-size: closestEvenNumber($size-text * 1.2)
 
-=subtitle
+.subtitle
   color: $title-color
   font-size: $subtitle-size
   font-weight: bold

@@ -20,7 +20,7 @@ p + p
   +button($color-link)
 
 .button-secondary
-  +button($color-background)
+  +button(darken($color-background, 5%))
 
 .button-grey
   +button(#eee)
@@ -37,19 +37,8 @@ p + p
 .button-danger
   +button($color-status-danger)
 
-.input
-  +input
-
-.select
-  +select
-
-.checkbox
-  +checkbox
-
 .title
-  +title
   margin-bottom: 20px
 
 .subtitle
-  +subtitle
   margin: 20px 0 10px

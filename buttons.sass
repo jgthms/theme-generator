@@ -1,7 +1,12 @@
+$button-padding-horizontal: 1.6
+
+@if $is-rounded
+  $button-padding-horizontal: 2.2
+
 =button($color)
   +control
   cursor: pointer
-  padding: ($control-padding - 1px) closestEvenNumber(ceil($control-padding * 1.6)) ($control-padding + 1px)
+  padding: ($control-padding - 1px) closestEvenNumber(ceil($control-padding * $button-padding-horizontal)) ($control-padding + 1px)
   @if (colorLuminance($color) > 0.8)
     background-color: $color
     border-color: darken($color, 20%)
